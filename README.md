@@ -17,7 +17,7 @@ text
  ┣━━ 🔥 TipoElemental (FOGO, ÁGUA, TERRA, AR, LUZ, TREVAS)
  ┣━━ ⚡ Habilidade (Curar, Congelar, Envenenar)
  ┣━━ 💊 EfeitoStatus (Queimadura, Congelamento, Veneno)
- ┗━━ 🎒 Item (Poção, X-Ataque)
+
  
 📦 service
  ┣━━ ⚔️ BatalhaService (gerencia turnos e batalhas)

@@ -94,9 +94,9 @@ public class Criatura {
 	        return this.hp > 0;
 	    }
 
-	    public void usarHabilidade() {
-	        if (habilidade != null) {
-	            habilidade.congelar();
+	    public void usarHabilidade(Criatura alvo) {
+	        if (habilidade != null && estaViva()) {
+	            habilidade.usar(this, alvo);
 	        }
 	    }
 
@@ -107,5 +107,19 @@ public class Criatura {
 	            efeitoStatus = null; 
 	        }
 	    }
+
+
+		public boolean estaMorto() {
+			
+			return this.hp <= 0;
+		}
+
+
+		public String toString() {
+			return "Criatura [nome=" + nome + ", hp=" + hp + ", atk=" + atk + ", def=" + def + ", spd=" + spd
+					+ ", efeitoStatus=" + efeitoStatus + ", tipoElemental=" + tipoElemental + ", habilidade="
+					+ habilidade + "]";
+		}
+		
 
 }

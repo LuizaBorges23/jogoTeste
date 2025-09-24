@@ -13,7 +13,7 @@ public class GerenciadorEfeitos implements EfeitoStatus {
 		return 50;
 	}
 
-	public int congelar() {
+	public int congelado() {
 		return 20;
 	}
 

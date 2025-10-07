@@ -1,11 +1,11 @@
 package model;
 
-public class Congelamento implements EfeitoStatus {
+public class Envenenado implements EfeitoStatus{
 	private int duracao;
-	private static final String NOME = "Congelado";
+	private static final String NOME = "envenenado";
 
-	public Congelamento(int duração) {
-		this.duracao = duração;
+	public Envenenado(int duracao) {
+		this.duracao = duracao;
 	}
 
 	public void aplicarEfeito(Criatura criatura) {
@@ -27,5 +27,4 @@ public class Congelamento implements EfeitoStatus {
 
 		return NOME;
 	}
-
 }

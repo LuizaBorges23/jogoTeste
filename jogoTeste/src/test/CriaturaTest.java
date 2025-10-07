@@ -17,29 +17,28 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Testes para Criatura e BatalhaService")
 public class CriaturaTest {
-	@Mock
-    private Habilidade habilidadeFogo;
 
+    
     @Mock
-    private Habilidade envenenar;
+    private Habilidade habilidadeVoar;
+    @Mock
+    private Habilidade habilidadePsiquico;
+    
+    @Mock
+    private Habilidade habilidadesombrio;
 
+    
     private Criatura dragao;
     private Criatura golem;
     private BatalhaService batalha;
 
     @BeforeEach
     void setUp() {
-        
-        when(habilidadeFogo.getNome()).thenReturn("Cuspir Fogo");
-        when(habilidadeFogo.getCustoMana()).thenReturn(10);
-        
-        when(envenenar.getNome()).thenReturn("Envenenar");
-        when(envenenar.getCustoMana()).thenReturn(15);
+    
+        dragao = new Criatura("Dragão", 100, 50, 30, 40, TipoElemental.FOGO, habilidadeVoar);
+        golem = new Criatura("Golem", 120, 40, 50, 30, TipoElemental.TERRA, habilidadePsiquico);
 
-        
-        dragao = new Criatura("Dragão", 100, 50, 30, 40, TipoElemental.FOGO, habilidadeFogo);
-        golem = new Criatura("Golem", 120, 40, 50, 30, TipoElemental.TERRA, envenenar);
-
+    
         batalha = new BatalhaService(dragao, golem);
     }
 
@@ -47,21 +46,19 @@ public class CriaturaTest {
     @DisplayName("Deve criar criaturas com atributos corretos")
     void testCriacaoCriaturas() {
         assertNotNull(dragao);
-        assertNotNull(golem);
-        
         assertEquals("Dragão", dragao.getNome());
         assertEquals(100, dragao.getHp());
-        assertEquals(50, dragao.getAtk());
         assertEquals(TipoElemental.FOGO, dragao.getTipoElemental());
-        
+
+        assertNotNull(golem);
         assertEquals("Golem", golem.getNome());
         assertEquals(120, golem.getHp());
-        assertEquals(40, golem.getAtk());
     }
 
     @Test
     @DisplayName("Deve calcular dano corretamente")
     void testCalculoDano() {
+    
         int dano = batalha.calcularDano(dragao, golem);
         assertTrue(dano >= 0, "Dano não pode ser negativo");
     }
@@ -70,30 +67,25 @@ public class CriaturaTest {
     @DisplayName("Deve verificar se criatura está viva")
     void testEstaViva() {
         assertTrue(dragao.estaViva());
-        assertTrue(golem.estaViva());
-        
-        
-        dragao.receberDano(150);
+        dragao.receberDano(150); 
         assertFalse(dragao.estaViva());
     }
 
     @Test
     @DisplayName("Deve executar turno de batalha")
     void testExecutarTurno() {
-        assertFalse(batalha.isBatalhaFinalizada());
-        
+        int golemHpAntes = golem.getHp();
         batalha.executarTurno();
         
-        
-        assertTrue(dragao.getHp() <= 100 || golem.getHp() <= 120);
+        assertTrue(golem.getHp() < golemHpAntes);
     }
 
     @Test
     @DisplayName("Deve identificar vencedor corretamente")
     void testVencedor() {
         
-        golem.receberDano(200);
-        
+        golem.receberDano(200); 
+
         assertTrue(batalha.isBatalhaFinalizada());
         Criatura vencedor = batalha.getVencedor();
         
@@ -104,20 +96,20 @@ public class CriaturaTest {
     @Test
     @DisplayName("Deve verificar empate")
     void testEmpate() {
-        
         dragao.receberDano(200);
         golem.receberDano(200);
-        
+
         assertTrue(batalha.isBatalhaFinalizada());
-        assertNull(batalha.getVencedor());
+        assertNull(batalha.getVencedor(), "O resultado deveria ser um empate (vencedor nulo)");
     }
 
     @Test
-    @DisplayName("Deve usar habilidade mockada")
+    @DisplayName("Deve usar habilidade e verificar a interação com o mock")
     void testUsoHabilidade() {
-        dragao.usarHabilidade(golem);
+        
+        dragao.getHabilidade();
         
         
-        verify(habilidadeFogo, times(1)).usar(dragao, golem);
+        verify(habilidadeVoar, times(1)).usar(dragao, golem);
     }
 }

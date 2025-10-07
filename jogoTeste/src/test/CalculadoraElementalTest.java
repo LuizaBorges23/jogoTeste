@@ -3,6 +3,7 @@ package test;
 
 import static org.junit.Assert.*;
 
+
 import org.junit.Test;
 
 import model.TipoElemental;
@@ -16,6 +17,7 @@ public class CalculadoraElementalTest {
 	        double multiplicador = calculadora.calcularMultiplicadorDano(TipoElemental.FOGO, TipoElemental.TERRA);
 	        assertEquals("Fogo deve ser super efetivo contra Terra", 2.0, multiplicador, 0.01);
 	        assertTrue(calculadora.isSuperEfetivo(TipoElemental.FOGO, TipoElemental.TERRA));
+	        System.out.println("Fogo deve ser super efetivo contra Terra");
 	    }
 	    
 	    @Test
@@ -23,48 +25,56 @@ public class CalculadoraElementalTest {
 	        double multiplicador = calculadora.calcularMultiplicadorDano(TipoElemental.FOGO, TipoElemental.AGUA);
 	        assertEquals("Fogo deve ser não efetivo contra Água", 0.5, multiplicador, 0.01);
 	        assertTrue(calculadora.isNaoEfetivo(TipoElemental.FOGO, TipoElemental.AGUA));
+	        System.out.println("Fogo deve ser não efetivo contra Água");
 	    }
 	    
 	    @Test
 	    public void testAguaContraFogo() {
 	        double multiplicador = calculadora.calcularMultiplicadorDano(TipoElemental.AGUA, TipoElemental.FOGO);
 	        assertEquals("Água deve ser super efetivo contra Fogo", 2.0, multiplicador, 0.01);
+	        System.out.println("Água deve ser super efetivo contra Fogo");
 	    }
 	    
 	    @Test
 	    public void testAguaContraTerra() {
 	        double multiplicador = calculadora.calcularMultiplicadorDano(TipoElemental.AGUA, TipoElemental.TERRA);
 	        assertEquals("Água deve ser não efetivo contra Terra", 0.5, multiplicador, 0.01);
+	        System.out.println("Água deve ser não efetivo contra Terra");
 	    }
 	    
 	    @Test
 	    public void testTerraContraAgua() {
 	        double multiplicador = calculadora.calcularMultiplicadorDano(TipoElemental.TERRA, TipoElemental.AGUA);
 	        assertEquals("Terra deve ser super efetivo contra Água", 2.0, multiplicador, 0.01);
+	        System.out.println("Terra deve ser super efetivo contra Água");
 	    }
 	    
 	    @Test
 	    public void testTerraContraAr() {
 	        double multiplicador = calculadora.calcularMultiplicadorDano(TipoElemental.TERRA, TipoElemental.AR);
 	        assertEquals("Terra deve ser super efetivo contra Ar", 2.0, multiplicador, 0.01);
+	        System.out.println("Terra deve ser super efetivo contra Ar");
 	    }
 	    
 	    @Test
 	    public void testArContraTerra() {
 	        double multiplicador = calculadora.calcularMultiplicadorDano(TipoElemental.AR, TipoElemental.TERRA);
 	        assertEquals("Ar deve ser super efetivo contra Terra", 2.0, multiplicador, 0.01);
+	        System.out.println("Ar deve ser super efetivo contra Terra");
 	    }
 	    
 	    @Test
 	    public void testLuzContraTrevas() {
 	        double multiplicador = calculadora.calcularMultiplicadorDano(TipoElemental.LUZ, TipoElemental.TREVAS);
 	        assertEquals("Luz deve ser super efetivo contra Trevas", 2.0, multiplicador, 0.01);
+	        System.out.println("Luz deve ser super efetivo contra Trevas");
 	    }
 	    
 	    @Test
 	    public void testTrevasContraLuz() {
 	        double multiplicador = calculadora.calcularMultiplicadorDano(TipoElemental.TREVAS, TipoElemental.LUZ);
 	        assertEquals("Trevas deve ser super efetivo contra Luz", 2.0, multiplicador, 0.01);
+	        System.out.println("Trevas deve ser super efetivo contra Luz");
 	    }
 	    
 	    @Test

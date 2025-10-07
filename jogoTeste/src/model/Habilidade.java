@@ -21,15 +21,15 @@ public class Habilidade {
                 System.out.println(fonte.getNome() + " atacou " + alvo.getNome() + " causando " + dano + " de dano!");
                 break;
                 
-            case "ataque elemental":
+            case "Psiquico":
                 int danoElemental = valor + (fonte.getAtk() / 2);
                 alvo.receberDano(danoElemental);
-                System.out.println(fonte.getNome() + " usou " + nome + " em " + alvo.getNome() + " causando " + danoElemental + " de dano elemental!");
+                System.out.println(fonte.getNome() + " usou " + nome + " em " + alvo.getNome() + " causando " + danoElemental + " Psiquico!");
                 break;
                 
-            case "cura":
+            case "voar":
                 alvo.setHp(alvo.getHp() + valor);
-                System.out.println(fonte.getNome() + " curou " + alvo.getNome() + " em " + valor + " HP!");
+                System.out.println(fonte.getNome() + " voar " + alvo.getNome() + " em " + valor + " VELOCIDADE!");
                 break;
                 
             case "status":

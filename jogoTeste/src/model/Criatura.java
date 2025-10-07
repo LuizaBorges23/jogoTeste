@@ -94,11 +94,7 @@ public class Criatura {
 	        return this.hp > 0;
 	    }
 
-	    public void usarHabilidade(Criatura alvo) {
-	        if (habilidade != null && estaViva()) {
-	            habilidade.usar(this, alvo);
-	        }
-	    }
+	   
 
 	    public void aplicarEfeitoTurno() {
 	        if (efeitoStatus != null && efeitoStatus.estaAtivo()) {
@@ -109,17 +105,20 @@ public class Criatura {
 	    }
 
 
+		public void receberCura(int pontosDeCura) {
+			this.hp = Math.max(0, this.hp + pontosDeCura); 
+			
+		}
+
+
 		public boolean estaMorto() {
 			
-			return this.hp <= 0;
+			return false;
 		}
 
 
-		public String toString() {
-			return "Criatura [nome=" + nome + ", hp=" + hp + ", atk=" + atk + ", def=" + def + ", spd=" + spd
-					+ ", efeitoStatus=" + efeitoStatus + ", tipoElemental=" + tipoElemental + ", habilidade="
-					+ habilidade + "]";
+		public void usarItem(Item pocaoCura, Criatura atacanteAtual) {
+			pocaoCura.usar(atacanteAtual);
 		}
-		
 
 }

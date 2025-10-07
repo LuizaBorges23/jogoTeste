@@ -1,37 +1,28 @@
 package service;
 
-import model.Criatura;
+import model.Congelado;
 import model.EfeitoStatus;
+import model.Envenenado;
+import model.Queimado;
 
-public class GerenciadorEfeitos implements EfeitoStatus {
+public class GerenciadorEfeitos {
 
-	public int queimado() {
-		return 10;
-	}
 
-	public int envenenado() {
-		return 50;
-	}
+    public GerenciadorEfeitos() {
+    }
 
-	public int congelado() {
-		return 20;
-	}
 
-	public void aplicarEfeito(Criatura criatura) {
+    public EfeitoStatus criarEfeitoQueimado(int duracao) {
+        return new Queimado(duracao);
+    }
 
-	}
 
-	public void reduzirDuracao() {
+    public EfeitoStatus criarEfeitoEnvenenado(int duracao) {
+        return new Envenenado(duracao);
+    }
 
-	}
 
-	public boolean estaAtivo() {
-
-		return false;
-	}
-
-	public String getNome() {
-
-		return null;
-	}
+    public EfeitoStatus criarEfeitoCongelado(int duracao) {
+        return new Congelado(duracao);
+    }
 }
